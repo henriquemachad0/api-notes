@@ -10,8 +10,10 @@ import {
 
 export class CreateNoteSpy implements CreateNote {
   params: CreateNote.Params
+  userId: string
 
-  async create (params: CreateNote.Params): Promise<void> {
+  async create (params: CreateNote.Params, userId: string): Promise<void> {
+    this.userId = userId
     this.params = params
   }
 }
@@ -34,22 +36,24 @@ export class RemoveNoteSpy implements RemoveNote {
 }
 
 export class GetAllNoteSpy implements GetAllNote {
-  _id: string
+  userId: string
   result = mockNoteModels()
 
   async getAll (
-    _id: string
+    userId: string
   ): Promise<GetAllNote.Result> {
-    this._id = _id
+    this.userId = userId
     return this.result
   }
 }
 export class GetByIdNoteSpy implements GetByIdNote {
   _id: string
+  userId: string
   result = mockNoteModel()
 
-  async getById (_id: string): Promise<GetByIdNote.Result> {
+  async getById (_id: string, userId: string): Promise<GetByIdNote.Result> {
     this._id = _id
+    this.userId = userId
     return this.result
   }
 }
