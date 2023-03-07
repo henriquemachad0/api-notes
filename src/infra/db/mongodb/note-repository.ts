@@ -17,9 +17,11 @@ implements
     UpdateNote,
     RemoveNote {
   async create (
-    data: CreateNoteRepository.Params
+    data: CreateNoteRepository.Params,
+    userId: string
   ): Promise<void> {
     const note = new Note({
+      userId: userId,
       note: data.note
     })
 
@@ -37,15 +39,15 @@ implements
     await Note.findByIdAndRemove(_id)
   }
 
-  async getAll (
-  ): Promise<INote[]> {
-    const notes = await Note.find().sort('-createdAt')
+  async getAll (userId: string): Promise<INote[]> {
+    const notes = await Note.find({ userId: userId }).sort('-createdAt')
     return notes as INote[]
   }
 
-  async getById (_id: string): Promise<INote> {
+  async getById (_id: string, userId: string): Promise<INote> {
     const note = await Note.findOne({
-      _id: _id
+      _id: _id,
+      userId: userId
     })
 
     return note as unknown as INote
