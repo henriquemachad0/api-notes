@@ -1,13 +1,13 @@
 export const userSchema = {
-  type: "object",
+  type: 'object',
   properties: {
     email: {
-      type: "string",
-      required: true,
+      type: 'string',
+      required: true
     },
     password: {
-      type: "string",
-      required: true,
-    },
-  },
-};
+      type: 'string',
+      required: true
+    }
+  }
+}

@@ -1,20 +1,20 @@
 export const refreshTokenUserPath = {
   post: {
-    description: "Refresh do token utiliazando o último refresh token",
-    summary: "Refresh do token utiliazando o último refresh token",
-    tags: ["User"],
+    description: 'Refresh do token utiliazando o último refresh token',
+    summary: 'Refresh do token utiliazando o último refresh token',
+    tags: ['User'],
     requestBody: {
       content: {
-        "application/json": {
+        'application/json': {
           schema: {
-            $ref: "#/schemas/user",
+            $ref: '#/schemas/user'
           },
           examples: {
-            token: "last_refresh_token",
-          },
-        },
-      },
-    },
+            token: 'last_refresh_token'
+          }
+        }
+      }
+    }
   },
   responses: {
     403: {
@@ -24,21 +24,21 @@ export const refreshTokenUserPath = {
       $ref: '#/components/serverError'
     },
     204: {
-      description: "OK",
+      description: 'OK',
       content: {
-        "application/json": {
+        'application/json': {
           schema: {
             properties: {
               refresh_token: {
-                type: "string",
+                type: 'string'
               },
               token: {
-                type: "string",
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-};
+                type: 'string'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
