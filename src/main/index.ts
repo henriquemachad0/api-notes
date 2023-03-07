@@ -1,4 +1,4 @@
-import 'module-alias/register'
+import './config/module-alias'
 import env from '@/main/config/env'
 import { connectMongo } from '@/domain/db/conn'
 
