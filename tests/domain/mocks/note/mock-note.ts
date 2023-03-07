@@ -4,7 +4,8 @@ import { UpdateNote } from '@/domain/usecases/note/update-note'
 
 import faker from 'faker'
 
-export const mockCreateNoteParams = (): CreateNote.Params => ({
+export const mockCreateNoteParams = (userId: string): CreateNote.Params => ({
+  userId: userId,
   note: faker.name.findName()
 })
 
