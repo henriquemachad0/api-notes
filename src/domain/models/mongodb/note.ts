@@ -7,6 +7,10 @@ const EntryInvoice =
     'Note',
     new Schema(
       {
+        userId: {
+          type: String,
+          required: false
+        },
         note: {
           type: String,
           required: false

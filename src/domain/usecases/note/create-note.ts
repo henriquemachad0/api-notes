@@ -1,7 +1,7 @@
 import INote from '@/domain/models/types/note/INote'
 
 export interface CreateNote {
-  create: (data: CreateNote.Params) => Promise<void>
+  create: (data: CreateNote.Params, userId: string) => Promise<void>
 }
 
 export namespace CreateNote {

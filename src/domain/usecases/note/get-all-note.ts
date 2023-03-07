@@ -2,7 +2,7 @@ import INote from '@/domain/models/types/note/INote'
 
 export interface GetAllNote {
   getAll: (
-    _id: string,
+    userId: string
   ) => Promise<GetAllNote.Result>
 }
 
