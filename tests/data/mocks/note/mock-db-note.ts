@@ -8,9 +8,11 @@ import { mockNoteModel, mockNoteModels } from '@/tests/domain/mocks/note/mock-no
 export class CreateNoteRepositorySpy
 implements CreateNoteRepository {
   params: CreateNoteRepository.Params
+  userId: string
 
-  async create (params: CreateNoteRepository.Params): Promise<void> {
+  async create (params: CreateNoteRepository.Params, userId: string): Promise<void> {
     this.params = params
+    this.userId = userId
   }
 }
 export class UpdateNoteRepositorySpy
@@ -34,19 +36,23 @@ implements RemoveNoteRepository {
 
 export class GetAllNoteRepositorySpy
 implements GetAllNoteRepository {
+  userId: string
   result = mockNoteModels()
 
-  async getAll (): Promise<GetAllNoteRepository.Result> {
+  async getAll (userId: string): Promise<GetAllNoteRepository.Result> {
+    this.userId = userId
     return this.result
   }
 }
 export class GetByIdNoteRepositorySpy
 implements GetByIdNoteRepository {
   _id: string
+  userId: string
   result = mockNoteModel()
 
-  async getById (_id: string): Promise<GetByIdNoteRepository.Result> {
+  async getById (_id: string, userId: string): Promise<GetByIdNoteRepository.Result> {
     this._id = _id
+    this.userId = userId
     return this.result
   }
 }
