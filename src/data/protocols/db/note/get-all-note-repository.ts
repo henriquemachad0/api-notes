@@ -1,7 +1,7 @@
 import INote from '@/domain/models/types/note/INote'
 
 export interface GetAllNoteRepository {
-  getAll: () => Promise<GetAllNoteRepository.Result>
+  getAll: (userId: string) => Promise<GetAllNoteRepository.Result>
 }
 
 export namespace GetAllNoteRepository {

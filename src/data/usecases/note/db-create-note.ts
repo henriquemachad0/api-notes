@@ -4,7 +4,7 @@ import { CreateNoteRepository } from '@/data/protocols/db/note/create-note-repos
 export class DbCreateNote implements CreateNote {
   constructor (private readonly createNoteRepository: CreateNoteRepository) {}
 
-  async create (data: CreateNote.Params): Promise<void> {
-    await this.createNoteRepository.create(data)
+  async create (data: CreateNote.Params, userId: string): Promise<void> {
+    await this.createNoteRepository.create(data, userId)
   }
 }

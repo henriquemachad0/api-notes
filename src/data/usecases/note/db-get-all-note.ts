@@ -4,7 +4,7 @@ import { GetAllNoteRepository } from '@/data/protocols/db/note/get-all-note-repo
 export class DbGetAllNote implements GetAllNote {
   constructor (private readonly getAllNoteRepository: GetAllNoteRepository) {}
 
-  async getAll (): Promise<GetAllNote.Result> {
-    return this.getAllNoteRepository.getAll()
+  async getAll (userId: string): Promise<GetAllNote.Result> {
+    return this.getAllNoteRepository.getAll(userId)
   }
 }
