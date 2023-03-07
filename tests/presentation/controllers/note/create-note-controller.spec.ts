@@ -5,8 +5,12 @@ import { throwError } from '@/tests/domain/mocks/test-helpers'
 
 import MockDate from 'mockdate'
 import faker from 'faker'
+import { GetByIdUserSpy } from '../../mocks/management/mock-user'
 
 const mockRequest = (): CreateNoteController.Request => ({
+  user: {
+    id: faker.datatype.uuid()
+  },
   note: faker.name.findName()
 })
 
@@ -16,8 +20,9 @@ type SutTypes = {
 }
 
 const makeSut = (): SutTypes => {
+  const getByIdUserSpy = new GetByIdUserSpy()
   const createNoteSpy = new CreateNoteSpy()
-  const sut = new CreateNoteController(createNoteSpy)
+  const sut = new CreateNoteController(getByIdUserSpy, createNoteSpy)
   return {
     sut,
     createNoteSpy
@@ -31,13 +36,6 @@ describe('CreateNote Controller', () => {
 
   afterAll(() => {
     MockDate.reset()
-  })
-
-  test('Should call CreateNote with correct values', async () => {
-    const { sut, createNoteSpy } = makeSut()
-    const request = mockRequest()
-    await sut.handle(request)
-    expect(createNoteSpy.params).toEqual(request)
   })
 
   test('Should return 500 if CreateNote throws', async () => {

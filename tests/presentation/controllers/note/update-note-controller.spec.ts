@@ -9,8 +9,12 @@ import { throwError } from '@/tests/domain/mocks/test-helpers'
 import MockDate from 'mockdate'
 import faker from 'faker'
 import { InvalidParamError } from '@/presentation/errors'
+import { GetByIdUserSpy } from '../../mocks/management/mock-user'
 
 const mockRequest = (): UpdateNoteController.Request => ({
+  user: {
+    id: faker.datatype.uuid()
+  },
   note: faker.name.findName()
 })
 
@@ -21,9 +25,11 @@ type SutTypes = {
 }
 
 const makeSut = (): SutTypes => {
+  const getByIdUserSpy = new GetByIdUserSpy()
   const updateNoteSpy = new UpdateNoteSpy()
   const getByIdNoteSpy = new GetByIdNoteSpy()
   const sut = new UpdateNoteController(
+    getByIdUserSpy,
     getByIdNoteSpy,
     updateNoteSpy
   )

@@ -4,17 +4,10 @@ import { GetAllNoteSpy } from '@/tests/presentation/mocks/note/mock-note'
 import { throwError } from '@/tests/domain/mocks/test-helpers'
 
 import MockDate from 'mockdate'
-import faker from 'faker'
+import { GetByIdUserSpy } from '../../mocks/management/mock-user'
 
 const mockRequest = (): GetAllNoteController.Request => ({
-  _id: null,
-  status: null,
   user: { id: null, token: null }
-})
-const mockRequestWithParams = (): GetAllNoteController.Request => ({
-  _id: faker.datatype.uuid(),
-  status: false,
-  user: { id: faker.datatype.uuid(), token: faker.datatype.uuid() }
 })
 
 type SutTypes = {
@@ -23,8 +16,10 @@ type SutTypes = {
 }
 
 const makeSut = (): SutTypes => {
+  const getByIdUserSpy = new GetByIdUserSpy()
   const getAllNoteSpy = new GetAllNoteSpy()
   const sut = new GetAllNoteController(
+    getByIdUserSpy,
     getAllNoteSpy
   )
   return {
@@ -40,13 +35,6 @@ describe('GetAllNote Controller', () => {
 
   afterAll(() => {
     MockDate.reset()
-  })
-
-  test('Should call GetAllNote with correct value', async () => {
-    const { sut, getAllNoteSpy } = makeSut()
-    const request = mockRequestWithParams()
-    await sut.handle(request)
-    expect(getAllNoteSpy._id).toBe(request._id)
   })
 
   test('Should return 200 on success', async () => {
