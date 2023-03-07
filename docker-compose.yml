@@ -8,7 +8,7 @@ services:
     volumes:
       - ./data:/data/db
     ports:
-      - "27020:27017"
+      - "27020:27020"
   api:
     container_name: api-notes-container
     image: node:12
