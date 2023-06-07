@@ -15,16 +15,8 @@ export default {
   },
   servers: [
     {
-      url: 'http://localhost:5050/api/',
-      description: 'API Notes dev local'
-    },
-    {
-      url: 'http://localhost:5051/',
-      description: 'API Notes dev docker'
-    },
-    {
-      url: 'http://www.teste.com.br/',
-      description: 'API Notes produção'
+      url: 'http://localhost:5051/api/',
+      description: 'API Notes'
     }
   ],
   paths,
