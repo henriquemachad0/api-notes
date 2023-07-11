@@ -14,9 +14,8 @@ module.exports = {
   moduleNameMapper: {
     '@/tests/(.*)': '<rootDir>/tests/$1',
     '@/(.*)': '<rootDir>/src/$1',
-    "^uuid$": "uuid"
+    '^uuid$': 'uuid'
     // "uuid": require.resolve('uuid'),
   },
   testTimeout: 70000
 }
-
